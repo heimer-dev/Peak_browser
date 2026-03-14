@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Peak Browser
+GenericName=Web Browser
+Comment=A secure browser with a hand-drawn sketchy UI
+Exec=peak-browser %U
+Icon=io.github.heimerdev.PeakBrowser
+Terminal=false
+Type=Application
+Categories=Network;WebBrowser;
+MimeType=x-scheme-handler/http;x-scheme-handler/https;
+StartupWMClass=peak-browser

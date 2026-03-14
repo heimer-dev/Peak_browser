@@ -1,0 +1,49 @@
+app-id: io.github.heimerdev.PeakBrowser
+runtime: org.freedesktop.Platform
+runtime-version: '24.08'
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: '24.08'
+command: peak-browser
+
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=x11
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --device=dri
+  - --filesystem=home
+  - --talk-name=org.freedesktop.Notifications
+
+modules:
+  - name: peak-browser
+    buildsystem: simple
+    build-commands:
+      - install -d /app/peak-browser
+      - cp -r peak-browser-linux-x64/. /app/peak-browser
+      - chmod 4755 /app/peak-browser/chrome-sandbox
+      - |
+        cat > /app/bin/peak-browser << 'EOF'
+        #!/bin/bash
+        exec zypak-wrapper /app/peak-browser/peak-browser "$@"
+        EOF
+      - chmod +x /app/bin/peak-browser
+      - install -Dm644 icon.png /app/share/icons/hicolor/512x512/apps/io.github.heimerdev.PeakBrowser.png
+      - install -Dm644 io.github.heimerdev.PeakBrowser.desktop /app/share/applications/io.github.heimerdev.PeakBrowser.desktop
+      - install -Dm644 io.github.heimerdev.PeakBrowser.metainfo.xml /app/share/metainfo/io.github.heimerdev.PeakBrowser.metainfo.xml
+
+    sources:
+      - type: archive
+        url: https://github.com/heimer-dev/Peak_browser/releases/download/v0.1.0/peak-browser-linux-x64-0.1.0.tar.gz
+        sha256: 72bedc58ef4c3e10aa38a03a6aa177032b6d46b150604d222dc96d061e5d78e0
+        dest: peak-browser-linux-x64
+      - type: file
+        url: https://raw.githubusercontent.com/heimer-dev/Peak_browser/v0.1.0/resources/icon.png
+        sha256: fc959c3f0a10c1456c9f7aa3ca3e9545df974726e768f4f3dc86cfc78ed6708c
+      - type: file
+        url: https://raw.githubusercontent.com/heimer-dev/Peak_browser/v0.1.0/io.github.heimerdev.PeakBrowser.desktop
+        sha256: 0e846d7524b456191d9238b0174db53fb4e84362efe6e9a7a8b4f84cf530a302
+      - type: file
+        url: https://raw.githubusercontent.com/heimer-dev/Peak_browser/v0.1.0/io.github.heimerdev.PeakBrowser.metainfo.xml
+        sha256: 12eef9fbdd4d49434b51f0bcddcc7271cf8827c18af5ae4e15137c9c2e4c4a25

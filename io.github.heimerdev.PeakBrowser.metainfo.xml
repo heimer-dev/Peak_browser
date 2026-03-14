@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.heimerdev.PeakBrowser</id>
+  <name>Peak Browser</name>
+  <summary>A secure browser with a hand-drawn sketchy UI</summary>
+  <description>
+    <p>Peak Browser is a desktop web browser with a distinctive hand-drawn aesthetic,
+    built with privacy and security in mind. It features ad-blocking, HTTPS enforcement,
+    and private browsing mode.</p>
+  </description>
+  <metadata_license>MIT</metadata_license>
+  <project_license>ISC</project_license>
+  <url type="homepage">https://github.com/heimer-dev/Peak_browser</url>
+  <releases>
+    <release version="0.1.0" date="2026-03-14"/>
+  </releases>
+  <categories>
+    <category>Network</category>
+    <category>WebBrowser</category>
+  </categories>
+  <provides>
+    <mediatype>x-scheme-handler/http</mediatype>
+    <mediatype>x-scheme-handler/https</mediatype>
+  </provides>
+</component>
