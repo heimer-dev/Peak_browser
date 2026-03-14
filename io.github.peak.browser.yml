@@ -22,7 +22,7 @@ modules:
     build-commands:
       # Copy the packaged Electron app
       - install -d /app/peak-browser
-      - cp -r . /app/peak-browser
+      - cp -r peak-browser-linux-x64/. /app/peak-browser
       # Fix chrome-sandbox permissions
       - chmod 4755 /app/peak-browser/chrome-sandbox
       # Create launcher script
@@ -40,11 +40,16 @@ modules:
       - install -Dm644 io.github.peak.browser.metainfo.xml /app/share/metainfo/io.github.peak.browser.metainfo.xml
 
     sources:
-      - type: dir
-        path: out/peak-browser-linux-x64
+      - type: archive
+        url: https://github.com/heimer-dev/Peak_browser/releases/download/v0.1.0/peak-browser-linux-x64-0.1.0.tar.gz
+        sha256: 72bedc58ef4c3e10aa38a03a6aa177032b6d46b150604d222dc96d061e5d78e0
+        dest: peak-browser-linux-x64
       - type: file
-        path: resources/icon.png
+        url: https://raw.githubusercontent.com/heimer-dev/Peak_browser/v0.1.0/resources/icon.png
+        sha256: fc959c3f0a10c1456c9f7aa3ca3e9545df974726e768f4f3dc86cfc78ed6708c
       - type: file
-        path: io.github.peak.browser.desktop
+        url: https://raw.githubusercontent.com/heimer-dev/Peak_browser/v0.1.0/io.github.peak.browser.desktop
+        sha256: 5e21e740f00167185da27424f25dada425c01c6db523cf7bb0dc76ae75438df1
       - type: file
-        path: io.github.peak.browser.metainfo.xml
+        url: https://raw.githubusercontent.com/heimer-dev/Peak_browser/v0.1.0/io.github.peak.browser.metainfo.xml
+        sha256: 98262bc758a168bc37b9a17bbd9227b11bfbd5b246cf6d641720b50213740d88
