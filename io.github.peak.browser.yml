@@ -1,0 +1,50 @@
+app-id: io.github.peak.browser
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: '23.08'
+command: peak-browser
+
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=x11
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --device=dri
+  - --filesystem=home
+  - --talk-name=org.freedesktop.Notifications
+
+modules:
+  - name: peak-browser
+    buildsystem: simple
+    build-commands:
+      # Copy the packaged Electron app
+      - install -d /app/peak-browser
+      - cp -r . /app/peak-browser
+      # Fix chrome-sandbox permissions
+      - chmod 4755 /app/peak-browser/chrome-sandbox
+      # Create launcher script
+      - |
+        cat > /app/bin/peak-browser << 'EOF'
+        #!/bin/bash
+        exec zypak-wrapper /app/peak-browser/peak-browser "$@"
+        EOF
+      - chmod +x /app/bin/peak-browser
+      # Install icon
+      - install -Dm644 icon.png /app/share/icons/hicolor/512x512/apps/io.github.peak.browser.png
+      # Install desktop file
+      - install -Dm644 io.github.peak.browser.desktop /app/share/applications/io.github.peak.browser.desktop
+      # Install AppStream metainfo
+      - install -Dm644 io.github.peak.browser.metainfo.xml /app/share/metainfo/io.github.peak.browser.metainfo.xml
+
+    sources:
+      - type: dir
+        path: out/peak-browser-linux-x64
+      - type: file
+        path: resources/icon.png
+      - type: file
+        path: io.github.peak.browser.desktop
+      - type: file
+        path: io.github.peak.browser.metainfo.xml

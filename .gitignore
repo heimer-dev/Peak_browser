@@ -1,0 +1,6 @@
+node_modules/
+out/
+build/
+.flatpak-builder/
+peak-browser-linux-x64-*.tar.gz
+*.flatpak

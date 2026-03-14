@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node:*)",
+      "Bash(npm show:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npx electron-vite:*)",
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash(kill:*)",
+      "Bash(which convert:*)",
+      "Bash(pkill:*)",
+      "Bash(which flatpak-builder:*)",
+      "Bash(pacman:*)",
+      "Bash(sudo pacman:*)",
+      "Bash(flatpak remote-add:*)",
+      "Bash(npm run:*)",
+      "Bash(flatpak install:*)",
+      "Bash(which:*)",
+      "Bash(cd:*)",
+      "Bash(flatpak-builder:*)",
+      "Bash(find:*)",
+      "Bash(npx electron-forge:*)",
+      "Bash(npx asar:*)",
+      "Bash(tar:*)",
+      "Bash(git tag:*)",
+      "Bash(ssh:*)",
+      "Bash(git remote:*)",
+      "Bash(git rm:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(which git-filter-repo:*)",
+      "Bash(git checkout:*)"
+    ]
+  }
+}
